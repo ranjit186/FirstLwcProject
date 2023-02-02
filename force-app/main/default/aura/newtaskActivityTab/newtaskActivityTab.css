@@ -1,0 +1,39 @@
+.THIS .subjectOptionDropdown{
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+    
+}
+.THIS .subjectsValue{
+    
+}
+.THIS .subjectOptions:hover{
+    background: #f0f0f0;
+    cursor: pointer;
+}
+.THIS .selectNameTab{
+    width: 20%;
+}
+.THIS .selectedDetail{
+    width: 100%;
+}
+.THIS .inputSearchRelatedName{
+    line-height: 0px;
+}
+.THIS .nameSelectedDropdown{
+    width: 10%;
+    min-width: max-content !important;
+    left : 13%;
+}
+.THIS .relatedToSelect{
+    width: 20%;
+}
+.THIS .inputWrapper{
+    padding: 0px !important;
+}
+.THIS .relatedToDropDown{
+    left: 100%;
+}
+.THIS .listDiv{
+    z-index:1;
+}

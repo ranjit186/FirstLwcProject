@@ -1,0 +1,29 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    <div class="activityTab slds-p-around_medium">
+        <lightning:tabset>
+        <lightning:tab label="Activity">
+            <lightning:tabset variant="scoped">
+                <lightning:tab label="New Task">
+                    <c:newtaskActivityTab />
+                </lightning:tab>
+                <lightning:tab label="Log a Call">
+                    Two Content !
+                </lightning:tab>
+                <lightning:tab label="New Event">
+                    Three Content !
+                </lightning:tab>
+                <lightning:tab label="Email">
+                    Three Email !
+                </lightning:tab>
+            </lightning:tabset>
+        </lightning:tab>
+        <lightning:tab label="Chatted" title="2nd tab extended title">
+            Chatted
+        </lightning:tab>
+        
+    </lightning:tabset> 
+    </div>
+   
+    
+    
+</aura:component>

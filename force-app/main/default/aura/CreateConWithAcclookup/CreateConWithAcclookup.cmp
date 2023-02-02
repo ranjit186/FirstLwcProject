@@ -1,0 +1,41 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="CreateContactWithAccLookup" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+    
+    
+    <!-- aura attribute -->
+    <aura:attribute name="Accounts" type="List" />
+    <aura:attribute name="contactName" type="String" />
+    
+    <lightning:card title="Create contact with lookup account">
+        <div class="c-container">
+            <lightning:layout horizontalAlign="spread">
+                <lightning:layoutItem>
+                    
+                    <div class="Box">
+                        
+                        <lightning:select aura:Id="slectedAccountId" name="Accounts" label="All Accounts" required="true" >
+                            <option value="">choose one...</option>
+                            <aura:iteration items="{!v.Accounts}" var="item">
+                                <option value="{!item.Id}">{!item.Name}</option>
+                            </aura:iteration>                        `
+                        </lightning:select>
+                    </div>
+                    <div>
+                    
+                    </div>
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem>
+                    <div class="Box">
+                        <lightning:input name="contactName" label="Enter LastName" value="{!v.contactName}" />
+                    </div>
+                </lightning:layoutItem>
+                <lightning:layoutItem>
+                    <div class="Box">
+                       <lightning:button label="Create Contact" title="Neutral action" onclick="{! c.onChangeAccount }"/>
+                    </div>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </div>
+    </lightning:card>
+</aura:component>

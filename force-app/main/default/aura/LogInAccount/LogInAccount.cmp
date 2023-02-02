@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="AccountPageLoginHandler" >
+  <!--  <aura:registerEvent name="loadMyEvent" type="c:SignInResult"/> -->
+    <!--Attribute -->
+    <aura:attribute name="Email" type="String" />
+    <aura:attribute name="Password" type="string" />
+    <aura:attribute name="url" type="string" default="/ranjit" />
+    
+    <aura:handler name="loadMyEvent" event="c:SignInResult" action="{!c.handleApplicationEvent}"/>
+    
+    <div class="c-container">
+        <div class="logIn_section">
+            <lightning:card  title="Sign In" class="slds-p-around_x-small" >
+                <lightning:input type="email" name="email" required="true" value="{!v.Email}" label="Email" />
+                <lightning:input type="Password" name="Password" required="true" value="{!v.Password}" label="Password" />
+                <div class="slds-align_absolute-center slds-p-top_x-small">
+                    <lightning:button variant="brand" label="Sign In" title="Brand action" onclick="{! c.signInhandle }" />
+                </div>
+                <lightning:navigation aura:id="navService"/>
+    <a href="{!v.url}">Link</a>
+            </lightning:card>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    
+     <aura:handler name="init" value="{!this }" action="{! c.init }"/>   
+	<Button onclick="{!c.Download}"> click to download </Button>
+</aura:component>

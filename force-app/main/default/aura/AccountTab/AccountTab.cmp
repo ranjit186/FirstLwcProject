@@ -1,0 +1,16 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+	 <lightning:tabset variant="vertical">
+        <lightning:tab label="Login">
+             <c:LogInAccount />
+        </lightning:tab>
+        <lightning:tab label="All Details">
+            <c:SignInAccContacts />
+        </lightning:tab>
+        <lightning:tab label="Create Account And Update Opportunity">
+            <c:CreateNewAccount />
+        </lightning:tab>
+       <lightning:tab label="Create Contact">
+            <c:SigninPage />
+        </lightning:tab>
+    </lightning:tabset>
+</aura:component>

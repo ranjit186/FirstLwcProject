@@ -1,0 +1,38 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="AccountPageLoginHandler" >
+    <!--Attributes -->
+    <aura:attribute name="accId" type="String" />
+    <aura:attribute name="userData" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="showtable" type="Boolean" default="false" />
+    <aura:attribute name="draftValues" type="Object" default="[]"/>
+    <aura:attribute name="rowsToAdd" type="Integer" default="10"/>
+    
+    <!-- handlers-->
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
+    <!-- handller -->
+    <aura:handler event="c:SignInResult"  action="{! c.showContactRelatedAccount }" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:registerEvent name="showToast" type="force:showToast" />
+    <div class="c-container">
+        
+        <div class="slds-p-around_x-small">
+            <aura:if isTrue="{!v.showtable}">
+                <lightning:button label="Add to the end" onclick="{! c.addRowsToEnd }"/>
+                <div style="background-color: #f0f0f0">
+                    <lightning:datatable
+                                         keyField="Id"
+                                         data="{! v.userData }"
+                                         columns="{! v.columns }"
+                                         hideCheckboxColumn="true"
+                                         onrowaction="{! c.handleRowAction }"
+                                         draftValues="{! v.draftValues }"
+                                         onsave="{! c.handleSaveEdition }"
+                                         />
+                </div>
+            </aura:if>
+        </div>
+        
+        
+    </div>
+    
+</aura:component>

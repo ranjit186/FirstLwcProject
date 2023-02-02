@@ -1,0 +1,18 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="sginInPageCtrl" >
+    <aura:attribute name="contactId" type="String" />
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    
+    
+    <!-- handler -->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+   
+    <lightning:datatable
+                         keyField="id"
+                         columns="{!v.columns }"
+                         data="{!v.data}"
+                         hideCheckBoxColumn="true"
+                     >
+    </lightning:datatable>
+    
+</aura:component>

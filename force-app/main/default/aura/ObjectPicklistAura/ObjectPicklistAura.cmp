@@ -1,0 +1,58 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="ObjectPicklistApex" >
+    
+    <!--handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <!--Attributes -->
+    <aura:attribute name="allObject" type="list" />
+    <aura:attribute name="fieldAndType" type="Map" />
+    <aura:attribute name="allObjectField" type="list" />
+    <aura:attribute name="filedValue" type="list" />
+    <aura:attribute name="slectedFieldType" type="String" />
+    <lightning:card title="select Object and it's field">
+        <div class="c-container">
+            <lightning:layout horizontalAlign="spread">
+                <lightning:layoutItem padding="around-small">
+                    <div class="custom-box">
+                        
+                        <lightning:select aura:Id="slectedObject" name="Objects" label="All Object" required="true" onchange="{!c.onChangeObject}">
+                            <option value="">choose one...</option>
+                            <aura:iteration items="{!v.allObject}" var="items">
+                                <option value="{!items.Id}">{!items.SobjectType}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                        
+                    </div>
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small">
+                    <div class="custom-box">
+                       
+                        <lightning:select aura:Id="slectedField" name="Fields" label="Select Field" required="true" onchange="{!c.onChangeField}">
+                            <option value="">choose one...</option>
+                            <aura:iteration items="{!v.allObjectField}" var="fields">
+                                <option value="{!fields}">{!fields}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                        
+                    </div>
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small">
+						<h5>Field type : {!v.slectedFieldType}</h5>
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small">
+                    <div class="custom-box">
+                        
+                        <lightning:select name="value" label="value" required="true">
+                            <option value="">choose one...</option>
+                            <aura:iteration items="{!v.filedValue}" var="values">
+                                <option value="1">{!values}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                        
+                    </div>
+                </lightning:layoutItem>
+                
+            </lightning:layout>
+        </div>
+    </lightning:card>
+</aura:component>

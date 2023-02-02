@@ -1,0 +1,18 @@
+.THIS.wordsMainBlock {
+    height: 70px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    transition: all 0.5s;
+}
+.THIS.wordsMainBlock:hover{
+    background-color: #ededed;
+    border: 1px solid #ededed;
+    
+}

@@ -1,0 +1,56 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="sginInPageCtrl" >
+    <aura:attribute name="Email" type="String" />
+    <aura:attribute name="password" type="String" />
+    <aura:attribute name="ShowDetail" type="Boolean" default="false" />
+    <aura:attribute name="contId" type="String" />
+    <aura:attribute name="logIn" type="Boolean" default="true" />
+    
+     <aura:attribute name="FirstName" type="String" />
+    <aura:attribute name="LastName" type="String" />
+    <aura:attribute name="newEmail" type="String" />
+    <aura:attribute name="newPassword" type="String" />
+    
+    <div class="c-container">
+        <lightning:layout verticalAlign="center" class="slds-p-around_xx-large">
+            <lightning:layoutItem flexibility="auto" padding="around-small" class="slds-align_absolute-center">
+                <lightning:card title="Sign In Page" class="slds-p-around_medium sginInPage" >
+                    <aura:if isTrue="{!v.logIn}">
+                        <div class="row">
+                            <lightning:input type="email" name="email" required="true" value="{!v.Email}" label="email field" />
+                            <lightning:input type="password" label="password field with a minimum of 6 characters"
+                                             name="password" pattern=".{6,}" required="true" value="{!v.password}" class="slds-p-top_x-small" />
+                            
+                            <div class="slds-p-top_medium slds-align_absolute-center">
+                                <lightning:button label="SIGN IN" title="Neutral action" onclick="{! c.clickToSignIn }"/>
+                                <lightning:button label="Create New Contact" title="Neutral action" onclick="{! c.createNewContact }"/>
+                            </div>
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="row">
+                                <lightning:input name="FirstName" required="true" value="{!v.FirstName}" label="FirstName field" />
+                                <lightning:input name="LastName" required="true" value="{!v.LastName}" label="LastName field" />
+                                <lightning:input type="email" name="email" required="true" value="{!v.newEmail}" label="email field" />
+                            <lightning:input type="password" label="password field with a minimum of 6 characters"
+                                             name="password" pattern=".{6,}" required="true" value="{!v.newPassword}" class="slds-p-top_x-small" />
+                                <div class="slds-p-top_medium slds-align_absolute-center">
+                                <lightning:button label="SIGN UP" title="Neutral action" onclick="{! c.createContact }"/>
+                                    <lightning:button label="Having Account!" title="Neutral action" onclick="{! c.havingAccount }"/>
+                            </div>
+                            </div>
+                        </aura:set>
+                    </aura:if>
+                    
+                </lightning:card>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small">
+                <aura:if isTrue="{!v.ShowDetail}">
+                    <lightning:card title="Deatil Of Contact" class="slds-p-around_medium" >
+                        
+                        <c:DetailParticularContact contactId="{!v.contId}"  ></c:DetailParticularContact>
+                        
+                    </lightning:card>
+                </aura:if>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>

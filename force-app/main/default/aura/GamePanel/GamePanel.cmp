@@ -1,0 +1,7 @@
+<aura:component>
+    <lightning:card title="Word Shuffle">
+        <aura:set attribute="actions">
+            <lightning:button label="New"/>
+        </aura:set>
+    </lightning:card>
+</aura:component>

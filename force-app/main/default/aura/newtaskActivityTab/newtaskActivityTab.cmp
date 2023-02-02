@@ -1,0 +1,307 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'New', 'value': 'new'},
+                                                        {'label': 'In Progress', 'value': 'inProgress'},
+                                                        {'label': 'Finished', 'value': 'finished'},
+                                                        ]"/>
+    <aura:attribute name="optionsName" type="List" default="[
+                                                            {'label': 'contact', 'value': 'contact'},
+                                                            {'label': 'Lead', 'value': 'Lead'},
+                                                            ]"/>
+    <aura:attribute name="subjectOptions" type="List" default="[
+                                                               {'label': 'New', 'value': 'new'},
+                                                               {'label': 'In Progress', 'value': 'inProgress'},
+                                                               {'label': 'Finished', 'value': 'finished'},
+                                                               ]"/>
+    <aura:attribute name="searchedSubjectOptions" type="List" default="[
+                                                                       {'label': '-None-', 'value': 'none'},
+                                                                       {'label': 'Call', 'value': 'Call'},
+                                                                       {'label': 'Email', 'value': 'Email'},
+                                                                       {'label': 'Send Later', 'value': 'Send Later'},
+                                                                       {'label': 'Send Qoute', 'value': 'Send Qoute'},
+                                                                       {'label': 'Other', 'value': 'Other'},
+                                                                       ]" />
+    <aura:attribute name="optionsnamess" type="List" default="[
+                                                              {'label': 'New', 'value': 'new'},
+                                                              {'label': 'In Progress', 'value': 'inProgress'},
+                                                              {'label': 'Finished', 'value': 'finished'},
+                                                              ]"/>
+    <aura:attribute name="searchedselectedRelatedOptions" type="List" default="[
+                                                                               {'label': '-None-', 'value': 'none'},
+                                                                               {'label': 'Call', 'value': 'Call'},
+                                                                               {'label': 'Email', 'value': 'Email'},
+                                                                               {'label': 'Send Later', 'value': 'Send Later'},
+                                                                               {'label': 'Send Qoute', 'value': 'Send Qoute'},
+                                                                               {'label': 'Other', 'value': 'Other'},
+                                                                               ]" />
+    <aura:attribute name="relatedToObject" type="List" default="[
+                                                                {'label': 'Contact', 'icon': 'standard:contact'},
+                                                                {'label': 'Lead', 'icon': 'standard:lead'},
+                                                                {'label': 'Account', 'icon': 'standard:account'},
+                                                                {'label': 'Assets', 'icon': 'standard:asset_object'},
+                                                                {'label': 'Asset Relationship', 'icon': 'standard:asset_relationship'},
+                                                                {'label': 'Assigned Resource', 'icon': 'standard:assigned_resource'},
+                                                                {'label': 'Campaigns', 'icon': 'standard:campaign'},
+                                                                {'label': 'Cases', 'icon': 'standard:case'},
+                                                                {'label': 'Contacts', 'icon': 'standard:contact'},
+                                                                ]" />
+    <aura:attribute name="NameSelectedTo" type="List" default="[
+                                                                {'value': 'Contact', 'icon': 'contact'},
+                                                                {'value': 'Lead', 'icon': 'lead'}
+                                                                ]" />
+    
+    <aura:attribute name="searchKeyWord" type="String" /> 
+    <aura:attribute name="openDropDown" type="Boolean" default="false" />
+    <aura:attribute name="showDrownSubject" type="Boolean" default="false"/>
+    <aura:attribute name="showDropdownRealted" type="Boolean" default="false"/>
+    <aura:attribute name="showNameSelectedDropDown" type="Boolean" default="false"/>
+    <aura:attribute name="showRelatedToDropDown" type="Boolean" default="false"/>
+    <aura:attribute name="showAssignedToDropDown" type="Boolean" default="false"/>
+    <aura:attribute name="selectedValue" type="String" />
+    <aura:attribute name="selectedRelatedNameValue" type="String" />
+    <aura:attribute name="selectedNameValue" type="String" />
+    <aura:attribute name="selectedNameIcon" type="String" default="contact"/>
+    
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="combobox-id-1" id="combobox-label-id-132">Subjet</label>
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div class="{! v.showDrownSubject ? 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open' : 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click' }">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                            <span class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default">
+                                <lightning:icon iconName="utility:search" size="small" alternativeText="search" title="search" />
+                            </span>
+                            <input type="text" 
+                                   aura:id="searchKeyword" 
+                                   id="text-input-id-47" 
+                                   placeholder="Select Subject" 
+                                   class="slds-input" 
+                                   onkeyup="{!c.SearchedSubject}"
+                                   onfocus="{!c.searchFocusHandler}"
+                                   onblur="{!c.searcBlurHandler}"
+                                   value="{!v.selectedValue}"
+                                   />
+                        </div>
+                    </div>
+                    <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                        <aura:iteration items="{!v.searchedSubjectOptions}" var="item">
+                            <p class="slds-p-horizontal_medium slds-p-vertical_x-small subjectOptions" onclick="{!c.selectSubject}" data-value="{!item.value}">{!item.label} </p>
+                            
+                        </aura:iteration>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--gjhgsghsdgf  -->
+    
+    <c:InputSection />
+    <div class=" ">
+        <lightning:input type="date" name="input3" label="Due Date" value="2020-09-07T00:00:00Z"/>
+    </div>
+    
+    
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="text-input-id">Name </label>
+        <div class="slds-form-element__control">
+            <div class="inputWrapper slds-input">
+                <div class="slds-grid slds-grid_vertical-align-center slds-p-right_x-small">
+                    <div class="selectNameTab ">
+                        <div class="{! v.showNameSelectedDropDown ? 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open' : 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click' }">
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                                <button type="button" 
+                                        onfocus="{!c.nameSelectFocusHandler}"
+                                        onblur="{!c.nameSelectBlurHandler}"
+                                        class="slds-input_faux slds-combobox__input slds-has-focus" aria-labelledby="combobox-label-id-131 combobox-id-3-selected-value" id="combobox-id-3-selected-value"
+                                        aria-controls="listbox-id-21" aria-expanded="true" aria-haspopup="listbox">
+                                    <span class="slds-truncate" id="combobox-value-id-94">
+                                    <lightning:icon iconName="{!'standard:'+v.selectedNameIcon}" size ="small" alternativeText="contact" title="contact" />
+                                    </span>
+                                </button>
+                                <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+                                    <lightning:icon class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" iconName="utility:down" size="xx-small" alternativeText="down" title="down" />
+                                </span>
+                            </div>
+                            <div id="listbox-id-21" class="nameSelectedDropdown slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                    <aura:iteration items="{!v.NameSelectedTo}" var="nameDropdwon">
+                                     <li role="presentation" class="slds-listbox__item">
+                                        <div id="option2" class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option"
+                                             
+                                             >
+                                            <span class="slds-media__figure slds-listbox__option-icon" data-value="{!nameDropdwon.value}" onclick="{!c.NameChangeHandler}">
+                                                <lightning:icon iconName="{!'standard:'+nameDropdwon.icon}" alternativeText="contact" title="contact" />
+                                            </span>
+                                            <span class="slds-media__body slds-p-left_x-small">
+                                                <span class="slds-truncate" title="">{!nameDropdwon.value}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    </aura:iteration>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selectedDetail slds-grow">
+                        <div class="{! v.showDropdownRealted ? 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open' : 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click' }">
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                    <input type="text" 
+                                           aura:id="searchrelaedKeyword" 
+                                           id="text-input-id-47" 
+                                           placeholder="Select Subject" 
+                                           class="slds-input" 
+                                           onkeyup="{!c.searchRealtedName}"
+                                           onfocus="{!c.searchRealtedFocusHandler}"
+                                           onblur="{!c.searchRealtedBlurHandler}"
+                                           value="{!v.selectedNameValue}"
+                                           />
+                                </div>
+                            </div>
+                            <div id="listbox-id-2" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                                <aura:iteration items="{!v.searchedselectedRelatedOptions}" var="item">
+                                    <p class="slds-p-horizontal_medium slds-p-vertical_x-small subjectOptions" onclick="{!c.selectSubject}" data-value="{!item.value}">{!item.label} </p>
+                                </aura:iteration>
+                            </div>
+                        </div>
+                    </div>        
+                    <lightning:icon class="inputLookupIcon slds-button_icon-xx-small slds-icon-utility-search slds-icon_container" iconName="utility:search" size="xx-small" alternativeText="search" title="search" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--- name -->
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="text-input-id-1">Related To</label>
+        <div class="slds-form-element__control">
+            <div class="inputWrapper slds-input">
+                <div class=" slds-grid slds-grid_vertical-align-center slds-p-right_x-small">
+                    <div class="relatedToSelect uiMenu">
+                        <div class="{! v.showRelatedToDropDown ? 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open' : 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click' }">
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                                <button type="button" 
+                                        onfocus="{!c.relatedToFocusHandler}"
+                                        onblur="{!c.relatedToBlurHandler}"
+                                        class="slds-input_faux slds-combobox__input slds-has-focus" aria-labelledby="combobox-label-id-131 combobox-id-3-selected-value" id="combobox-id-3-selected-value"
+                                        aria-controls="listbox-id-31" aria-expanded="true" aria-haspopup="listbox">
+                                    <span class="slds-truncate" id="combobox-value-id-94">
+                                    <lightning:icon iconName="standard:account" size ="small" alternativeText="account" title="account" />
+                                    </span>
+                                </button>
+                                <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+                                    <lightning:icon class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" iconName="utility:down" size="xx-small" alternativeText="down" title="down" />
+                                </span>
+                            </div>
+                            <div id="listbox-id-31" class="relatedToDropDown slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                    <aura:iteration items="{!v.relatedToObject}" var="objectItem">
+                                        <li role="presentation" class="slds-listbox__item">
+                                            <div id="option2" class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                                <span class="slds-media__figure slds-listbox__option-icon">
+                                                    <lightning:icon iconName="{!objectItem.icon}" alternativeText="contact" title="contact" />
+                                                </span>
+                                                <span class="slds-media__body slds-p-left_x-small">
+                                                    <span class="slds-truncate" title="Contact">{!objectItem.label}</span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </aura:iteration>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="autocompleteWrapper slds-grow">
+                        <input type="text" 
+                               aura:id="searchRelatedTo" 
+                               placeholder="Select Subject" 
+                               class="slds-input" 
+                               onkeyup="{!c.searchRealtedTo}"
+                               onfocus="{!c.searchRealtedToFocusHandler}"
+                               onblur="{!c.searchRealtedToBlurHandler}"
+                               value="{!v.selectedNameValue}"
+                               />
+                    </div>
+                    <lightning:icon class="inputLookupIcon slds-button_icon-xx-small slds-icon-utility-search slds-icon_container" iconName="utility:search" size="xx-small" alternativeText="search" title="search" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--- related to -->
+    
+    
+    
+    
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="text-input-id-1">Assigned To</label>
+        <div class="slds-form-element__control">
+           <div class="inputWrapper slds-input">
+            	<div class="slds-grid slds-grid_vertical-align-center slds-p-right_x-small">
+               		<div class="relatedToSelect" >
+                    	<div class="{! v.showAssignedToDropDown ? 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open' :
+                                    'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click' }">
+                             <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                                <button type="button" 
+                                        onfocus="{!c.assignedToFocusHandler}"
+                                        onblur="{!c.assignedToBlurHandler}"
+                                        class="slds-input_faux slds-combobox__input slds-has-focus" aria-labelledby="combobox-label-id-131 combobox-id-3-selected-value" id="combobox-id-3-selected-value"
+                                        aria-controls="listbox-id-41" aria-expanded="true" aria-haspopup="listbox">
+                                    <span class="slds-truncate" id="combobox-value-id-94">
+                                        <lightning:icon iconName="standard:people" size ="small" alternativeText="contact" title="contact" />
+                                    </span>
+                                </button>
+                                <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+                                    <lightning:icon class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" iconName="utility:down" size="xx-small" alternativeText="down" title="down" />
+                                </span>
+                            </div>
+                            <div id="listbox-id-41" class=" slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                    
+                                        <li role="presentation" class="slds-listbox__item">
+                                            <div id="option2" class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                                <span class="slds-media__figure slds-listbox__option-icon">
+                                                    <lightning:icon iconName="standard:people" alternativeText="contact" title="contact" />
+                                                </span>
+                                                <span class="slds-media__body slds-p-left_x-small">
+                                                    <span class="slds-truncate" title="Contact">People</span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                   <li role="presentation" class="slds-listbox__item">
+                                            <div id="option2" class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                                <span class="slds-media__figure slds-listbox__option-icon">
+                                                    <lightning:icon iconName="standard:queue" alternativeText="contact" title="contact" />
+                                                </span>
+                                                <span class="slds-media__body slds-p-left_x-small">
+                                                    <span class="slds-truncate" title="Contact">Queue</span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="autocompleteWrapper slds-grow">
+                        <input type="text" 
+                               aura:id="searchAssignedTo" 
+                               placeholder="Select Assign To" 
+                               class="slds-input" 
+                               onkeyup="{!c.searchAssignedTo}"
+                               onfocus="{!c.searchAssignedToFocusHandler}"
+                               onblur="{!c.searchAssignedToBlurHandler}"
+                               value="{!v.selectedNameValue}"
+                               />
+                    </div>
+                    <lightning:icon class="inputLookupIcon slds-button_icon-xxx-small slds-icon-utility-search slds-icon_container" 
+                                    iconName="utility:search" size="xx-small" alternativeText="search" title="search" />
+               </div>
+            </div>
+        </div>
+    </div>
+    <lightning:combobox name="progress" label="Status" value="inProgress" placeholder="Select Progress" options="{! v.options }" onchange="{! c.handleChange }"/>
+    
+</aura:component>

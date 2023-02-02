@@ -1,0 +1,68 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller ="GetAccRelatedOppContact">
+    <aura:attribute name="dataOfAccount" type="List" />
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+            <lightning:card title="show Account data">
+                <lightning:button label="getdata" title="Neutral action" onclick="{! c.getAlldata }"/>
+                
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Account Name">Account Name</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Opportunity Name">Opportunity Name</div>
+                            </th>
+                            
+                            
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Contact">Contact</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.dataOfAccount}" var="item">
+                            <tr class="slds-hint-parent">
+                                <td data-label="Account Name">
+                                    <div class="slds-truncate" title="Cloudhub">{!item.Name}</div>
+                                </td> 
+                                <td data-label="Opportunity Name">
+                                    <lightning:select name="selectopportunity" label="Opportunity" required="true">
+                                        <option >-None-</option >
+                                        <aura:iteration items="{!item.Opportunities}" var="gs">
+                                            
+                                            <option >{!gs.Name}</option >
+                                        </aura:iteration>
+                                    </lightning:select>
+                                    
+                                    
+                                    
+                                </td>
+                                <td data-label="Contact">
+                                    <lightning:select name="selectContact" label="Select contact" required="true">
+                                        <option >-None-</option >
+                                        <aura:iteration items="{!item.Contacts}" var="contactObj">
+                                            
+                                            <option >{!contactObj.Name}</option >
+                                        </aura:iteration>
+                                    </lightning:select>
+                                    
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                    
+                </table>
+                
+                
+                
+            </lightning:card>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <span>2</span>
+        </div>
+    </div>
+</aura:component>

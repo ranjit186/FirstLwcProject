@@ -1,0 +1,82 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="TraningQuestion" >
+    <aura:attribute name="opportunities" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    
+    <aura:attribute name="AccountName" type="String" />
+    <aura:attribute name="UserName" type="String" />
+    <aura:attribute name="Password" type="String" />
+    <aura:attribute name="NumOfAccountCreate" type="Integer" />
+    <aura:Attribute name="PhoneNumb" type="String" />
+    <aura:attribute name="selectedDate" type="String" />
+    
+    <aura:attribute name="Rating" type="List" default="[
+                                                       {'label': 'Hot', 'value': 'Hot'},
+                                                       {'label': 'Warm', 'value': 'Warm'},
+                                                       {'label': 'Cold', 'value': 'Cold'},
+                                                       ]"/>
+    <aura:attribute name="Type" type="List" default="[
+                                                     {'label': 'Prospect', 'value': 'Prospect'},
+                                                     {'label': 'Customer - Direct', 'value': 'Customer - Direct'},
+                                                     {'label': 'Customer - Chennel', 'value': 'Customer - Chennel'},
+                                                     {'label': 'Technology Partner', 'value': 'Technology Partner'},                 
+                                                     ]"/>
+    <aura:attribute name="Industry" type="List" default="[
+                                                         {'label': 'Aggriculture', 'value': 'Aggriculture'},
+                                                         {'label': 'Apperal', 'value': 'Warm'},
+                                                         {'label': 'Banking', 'value': 'Cold'},
+                                                         {'label': 'Chemicals', 'value': 'Aggriculture'},
+                                                         {'label': 'Communications', 'value': 'Warm'},
+                                                         {'label': 'Education', 'value': 'Cold'},
+                                                         ]"/>
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_6-of-12">
+            <lightning:card  title="Create Account" class="slds-p-around_xx-large">
+                <div class="slds-p-vertical_x-small" >
+                    <lightning:input name="Account Name" label="Account Name" value="{!v.AccountName}" onchange="{!c.updateValue}" />
+                </div>
+                <div class="slds-p-vertical_x-small" >
+                    <lightning:input name="UserName" label="UserName" value="{!v.UserName}" onchange="{!c.updateValue}" />
+                </div>
+                <div class="slds-p-vertical_x-small" >
+                    <lightning:input name="Password" label="Password" value="{!v.Password}" onchange="{!c.updateValue}"/>
+                </div>
+                <div class="slds-p-vertical_x-small" >
+                    <lightning:input type="tel" label="phone" aura:id="phoneNum" name="phone" value="{!v.PhoneNumb}" maxlength="10" onchange="{!c.updateValue}"/>
+                </div>
+                <div class="slds-p-vertical_x-small" >
+                    <lightning:combobox name="Rating" label="Select rating" aura:id="rating" value="-None-" placeholder="Select rating" options="{! v.Rating }" onchange="{!c.updateValue}"/>
+                </div>
+                <div class="slds-p-vertical_x-small" >
+                    <lightning:combobox name="Type" label="Select Type" aura:id="type" value="-None-" placeholder="Select Type" options="{! v.Type }" onchange="{!c.updateValue}"/>
+                </div>
+                <div class="slds-p-vertical_x-small" >
+                    <lightning:combobox name="Industry" label="Select Industry" aura:id="industry" value="-None-" placeholder="Select Industry" options="{! v.Industry }" onchange="{!c.updateValue}"/>
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_x-small">
+                    <lightning:button label="Create Account" title="Neutral action" onclick="{! c.createAccount }"/>
+                </div>
+                <p>{!$Browser.isIPhone}</p>
+            </lightning:card>
+            
+        </div>
+        <div class="slds-col slds-size_6-of-12">
+            <lightning:card  title="Update Opportunity" class="slds-p-around_xx-large">
+                
+                <div class="slds-p-arround_x-large">
+                    <lightning:select aura:id="selectOpportunity" name="select1" label="Choose Opportunity" required="true">
+                        <option value=" ">-none-</option>
+                        <aura:iteration items="{!v.opportunities}" var="item">
+                            <option value="{!item.Id}">{!item.Name}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:input type="date" name="input1" value="{!v.selectedDate}" label="Enter a date" />
+                </div>
+                <div class="slds-align_absolute-center slds-p-top_x-small">
+                    <lightning:button label="Update opportunity" title="Neutral action" onclick="{! c.UpdateToOpportunity }"/>
+                </div>
+            </lightning:card>
+        </div>
+    </div>
+    
+</aura:component>

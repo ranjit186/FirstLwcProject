@@ -1,0 +1,39 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="modes" type="List" default="[
+        {'label': 'Easy', 'value': 'Easy'},
+        {'label': 'Medium', 'value': 'Medium'},
+        {'label': 'Hard', 'value': 'Hard'},
+        ]" />
+    <aura:attribute name="selectedMode" type="string" />
+    <lightning:card title="Word Suffel">
+        <lightning:layout horizontalAlign="center">
+            <lightning:layoutItem  padding="around-small">
+                <lightning:combobox
+                    name="gameMode" 
+                    label="Game Mode" 
+                    value="inProgress" 
+                    placeholder="Select Progress"
+                    variant ="label-hidden"
+                    options="{!v.modes}" 
+                    aura:id = "gameMode"
+                 />     
+            </lightning:layoutItem>
+            <lightning:layoutItem  padding="around-small">
+                <lightning:button
+                  variant="brand" 
+                  label="Start New Game"
+                  title="Start New Game"
+                  onclick="{!c.startGame}"
+                />
+            </lightning:layoutItem>
+            <lightning:layoutItem  padding="around-small">
+                <lightning:button 
+                    label="Reshuffle"
+                    title="Reshuffle"
+                    onclick="{!c.reShuffle}"
+                /> 
+            </lightning:layoutItem>
+        </lightning:layout>
+        Selected Mode is : {!v.selectedMode}
+    </lightning:card>
+</aura:component>

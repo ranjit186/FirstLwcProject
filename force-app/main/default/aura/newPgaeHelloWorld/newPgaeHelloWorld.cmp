@@ -1,0 +1,43 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+	<aura:attribute name='Wishes' type='string' default='may god bless you'></aura:attribute>
+    <lightning:card title ="{!v.Wishes}">
+        <p class="slds-p-horizontal_small">
+                  {!v.Wishes}
+                  </p>
+    </lightning:card>
+    <lightning:card footer="somthing are missing...!!!" title="Hello">
+      
+          <aura:set attribute="actions">
+            <lightning:button label="intermediate"/>
+            <lightning:button label="old"/>
+            <lightning:button label="New"/>
+              
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+            Card Body (custom component)
+        </p>
+    </lightning:card>
+    <lightning:carousel disableAutoRefresh="false" disableAutoScroll="false">
+        <lightning:carouselImage
+            src = "{!$Resource.ProfilePic}"
+            header = "First Card"
+            description = "First card description."
+            alternativeText = "First card accessible description."
+            href = "https://www.salesforce.com">
+        </lightning:carouselImage>
+        <lightning:carouselImage
+            src = "/docs/component-library/app/images/examples/carousel-02.png"
+            header = "Second Card"
+            description = "Second card description."
+            alternativeText = "Second card accessible description."
+            href = "https://www.salesforce.com">
+        </lightning:carouselImage>
+        <lightning:carouselImage
+            src = "/docs/component-library/app/images/examples/carousel-03.png"
+            header = "Third Card"
+            description = "Third card description."
+            alternativeText = "Third card accessible description."
+            href = "https://www.salesforce.com">
+        </lightning:carouselImage>
+    </lightning:carousel>
+</aura:component>
