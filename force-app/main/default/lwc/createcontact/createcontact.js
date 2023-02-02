@@ -13,7 +13,6 @@ export default class Createcontact extends LightningElement {
         console.log('----acc----',acc);
         let tempOption = [{'label':'none', 'value':''}];
         this.allAccounts = acc;
-        console.log('----allAccounts----'+JSON.stringify(this.allAccounts, null, 4));
         for(let i = 0; i <this.allAccounts.length; i++){
             console.log('----acc----',this.allAccounts[i]);
             tempOption.push({'label': this.allAccounts[i].Name, 'value': this.allAccounts[i].Id});
